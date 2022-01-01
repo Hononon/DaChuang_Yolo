@@ -1,0 +1,49 @@
+
+{% extends 'article/base.html' %}
+{% block title %}
+    用户登陆   
+{% endblock %}
+
+{% block styles %}
+    {{super()}}
+    <style>
+        #container{
+            width: 1000px;
+            height: 600px;
+            margin: 0 auto;
+
+        }
+        #tips{
+            color:red;
+            font-size: 14px;
+        }
+    </style>        
+{% endblock %}
+
+{% block newcontent %}
+    <div id="container">
+        <h1>用户登陆</h1>
+        <p id="tips">{{msg}}</p>
+        <form class="form-horizontal" method="post" action="{{url_for('user.login')}}">
+            <div class="form-group">
+              <label for="inputUsername" class="col-md-2 control-label">用户名</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="inputUsername" placeholder="username" name="username">
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="inputpassword" class="col-md-2 control-label">密码</label>
+                <div class="col-md-6">
+                  <input type="password" class="form-control" id="inputpassword" placeholder="password" name="password">
+                </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary col-md-3" >登&nbsp;&nbsp;陆</button>
+              </div>
+            </div>
+          </form>
+    </div>
+        
+{% endblock %}

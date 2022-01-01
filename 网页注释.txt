@@ -1,0 +1,37 @@
+<!--                <p>-->
+<!--<form action="{{url_for('user.video_upload')}}" method="POST" enctype="multipart/form-data">
+                	<p><input type="file" id="exampleInputFile" name="video"></p>-->
+<!--                    <video controls="controls" width="600" height="600">-->
+<!--                        -->
+<!--                        <source src="{% if user.video %}{{ url_for('static',filename=user.video)}} {% else %}{{ url_for('static',filename='videos/test.mp4')}} {% endif%}" type="video/mp4"/>-->
+<!--                        -->
+<!--                    </video>-->
+<!--                </p>-->
+
+
+<!-- <div id="right", class="second">
+            <h2>指导反馈</h2>
+            <p id="tips2">{{msg}}</p>
+            <form >
+                <p>
+                    <video controls="controls" width="600" height="600">
+                        
+                        <source src="{{url_for('static',filename='upload/video/test3.mp4')}}" type="video/mp4"/>
+                    </video>
+                </p>
+            </form>
+        </div> -->
+        <!-- <div id="right", class="second">
+            <h2>指导反馈</h2>
+            <p id="tips2">{{msg}}</p>
+            <form  action="" method="POST" enctype="multipart/form-data">
+                <p>
+                    <video controls="controls" width="600" height="600">
+                        # <source src="{{url_for('static',filename='upload/video/new_video.mp4')}}" type="video/mp4"/> 
+                        <source src="{% if user.new_video %}{{ url_for('static',filename=user.new_video)}} {% else %}{{ url_for('static',filename='videos/test.mp4')}} {% endif%}" type="video/mp4"/>
+                    </video>
+                </p>
+            </form>
+        </div> -->
+
+        

@@ -1,0 +1,78 @@
+{% extends 'article/base.html' %}
+{% block title %}
+上传视频
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<style>
+        .first {
+            width: 50%;
+            float:left;
+            height: 100px;
+        }
+        .second {
+            width: 50%;
+            float:right;
+            height: 100px;
+        }
+        .picture {
+            width: 100%;
+            float: center;
+            height: 1000px;
+        }
+        .picture1 {
+            width: 100%;
+            float: center;
+            height: 450px;
+        }
+
+
+
+
+
+
+
+
+</style>
+{% endblock %}
+
+{% block newcontent %}
+
+<div id="container" align="center" class="row">
+    <div id="main">
+        <div id="1" class="col-md-4">
+            <h2>上传照片</h2>
+            <p id="tips1">{{msg}}</p>
+            <form action="{{url_for('user.jiqiusc')}}" class="form-horizontal" method="POST"
+                  enctype="multipart/form-data">
+                <p><input type="file" id="exampleInputFile" name="picture_jiqiu"></p>
+                <p>
+                    <button type="submit" class="btn btn-primary">上传</button>
+                </p>
+                <p>
+                    <img src="{% if user.picture_jiqiu%}{{ url_for('static',filename=user.picture_jiqiu)}} {% else %}{{ url_for('static',filename='picture/jiqiu/moren.jpg')}} {% endif%}"
+                         class="picture1">
+                </p>
+            </form>
+            <form action="{{url_for('user.jiqiucl')}}" method="POST">
+                <p>
+                    <button type="submit" class="btn btn-primary">展示结果</button>
+                </p>
+            </form>
+        </div>
+        <div id="center" class="col-md-4">
+            <p>
+                <img src="{% if user.picture_jiqiu%}{{url_for('static',filename='dealwith/jiqiuing.jpg') }} {% else %}{{ url_for('static',filename='picture/jiqiu/moren.jpg')}} {% endif%}"
+                     class="picture">
+            </p>
+        </div>
+        <div id="right" class="col-md-4">
+            <p>
+                <img src="{% if user.picture_jiqiu_new%}{{ url_for('static',filename=user.picture_jiqiu_new)}} {% else %}{{ url_for('static',filename='picture/jiqiu/moren.jpg')}} {% endif%}"
+                     class="picture">
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

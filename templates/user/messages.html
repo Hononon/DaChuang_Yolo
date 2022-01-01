@@ -1,0 +1,101 @@
+{% extends 'article/base.html' %}
+{% block title %}
+用户留言板
+{% endblock %}
+
+{% block styles %}
+    {{super()}}
+    <style>
+        #container{
+            width: 1000px;
+            height: 600px;
+            margin: 0 auto;
+
+        }
+        .first {
+            width: 50%;
+            float:left;
+            height: 100px;
+        }
+        .second {
+            width: 50%;
+            float:right;
+            height: 100px;
+        }
+    </style>        
+{% endblock %}
+
+{% block newcontent %}
+<!-- <div id="container">
+    <div id="main">
+        <div id="left", class="first">
+            <h2>指导反馈</h2>
+            <p id="tips1">{{msg}}</p>
+            <form action="{{url_for('user.messages')}}" method="POST" enctype="multipart/form-data">
+                <p>
+                    <video controls="controls" width="600" height="600">
+                        
+                        <source src="{% if user.new_video %}{{ url_for('static',filename=user.new_video)}} {% else %}{{ url_for('static',filename='videos/test.mp4')}} {% endif%}" type="video/mp4"/>
+                    </video>
+                    
+                </p>
+            </form>
+        </div>
+
+    </div>
+</div> -->
+               <p>
+                <form action="{{url_for('user.video_upload')}}" method="POST" enctype="multipart/form-data">
+                	<p><input type="file" id="exampleInputFile" name="video"></p>
+                  <video controls="controls" width="600" height="600">
+                       
+                       <source src="{% if user.video %}{{ url_for('static',filename=user.video)}} {% else %}{{ url_for('static',filename='videos/test.mp4')}} {% endif%}" type="video/mp4"/>-->
+                       
+                    </video>
+                </p>
+
+ 
+
+<div id="container">
+    <div id="main">
+        <div id="left", class="first">
+            <h2>指导反馈</h2>
+            <p id="tips1">{{msg}}</p>
+            <form action="{{url_for('user.messages')}}" method="POST" enctype="multipart/form-data">
+                <p>
+                    <video controls="controls" width="600" height="600">
+                        
+                        <source src="{% if user.new_video %}{{ url_for('static',filename=user.new_video)}} {% else %}{{ url_for('static',filename='videos/test.mp4')}} {% endif%}" type="video/mp4"/>
+                    </video>
+                    
+                </p>
+                <p>
+                   <button type="submit" class="btn btn-primary col-md-3">已上传获取结果</button>
+                </p>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+{% endblock %}

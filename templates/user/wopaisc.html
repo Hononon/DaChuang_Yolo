@@ -1,0 +1,73 @@
+{% extends 'article/base.html' %}
+{% block title %}
+上传视频
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<style>
+        .first {
+            width: 33%;
+            float:left;
+            height: 100px;
+        }
+        .second {
+            width: 33%;
+            float:right;
+            height: 1000px;
+        }
+        .picture {
+            width: 100%;
+            float: center;
+            height: 1000px;
+        }
+        .picture1 {
+            width: 100%;
+            float: center;
+            height: 450px;
+        }
+
+
+
+</style>
+{% endblock %}
+
+{% block newcontent %}
+
+<div id="container" align="center" class="row">
+    <div id="left" class="col-md-4">
+        <div id="1">
+            <h2>上传照片</h2>
+            <p id="tips1">{{msg}}</p>
+            <form action="{{url_for('user.wopaisc')}}" class="form-horizontal" method="POST"
+                  enctype="multipart/form-data">
+                <p><input type="file" id="exampleInputFile" name="picture_wopai"></p>
+                <p>
+                    <button type="submit" class="btn btn-primary">上传</button>
+                </p>
+                <P>样例</P>
+                <p>
+                    <img src="{% if user.picture_wopai%}{{ url_for('static',filename=user.picture_wopai)}} {% else %}{{ url_for('static',filename='picture/wopai/moren.jpg')}} {% endif%}"
+                         class="picture1">
+                </p>
+            </form>
+            <form action="{{url_for('user.wopaicl')}}" method="POST">
+                <p>
+                    <button type="submit" class="btn btn-primary">展示结果</button>
+                </p>
+            </form>
+        </div>
+    </div>
+    <div id="center" class="col-md-4">
+        <p>
+            <img src="{% if user.picture_wopai%}{{ url_for('static',filename='dealwith/wopaiing.jpg')}} {% else %}{{ url_for('static',filename='picture/wopai/picture1.jpg')}} {% endif%}"
+                 class="picture"></p>
+    </div>
+    <div id="right" class="col-md-4">
+        <p>
+            <img src="{% if user.picture_wopai_new%}{{ url_for('static',filename=user.picture_wopai_new)}} {% else %}{{ url_for('static',filename='picture/wopai/picture1.jpg')}} {% endif%}"
+                 class="picture"></p>
+    </div>
+</div>
+{% endblock %}
+
