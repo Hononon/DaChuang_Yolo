@@ -1,0 +1,58 @@
+{% extends 'article/base.html' %}
+{% block title %}
+上传图片
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<style>
+        .first {
+            width: 50%;
+            float:left;
+            height: 1000px;
+        }
+        .second {
+            width: 50%;
+            float:right;
+            height: 1000px;
+        }
+        .picture {
+            width: 100%;
+            float: center;
+            height: 1000px;
+        }
+
+
+
+
+
+
+
+
+</style>
+{% endblock %}
+
+{% block newcontent %}
+
+
+<body>
+<div id="container">
+    <div id="main" class="row">
+        <div>
+            <div id="left" class="col-md-6" align="center">
+                <a target="_blank" href="/user/wopaisc" class="btn btn-link btn-lg btn-block">
+                    <h1>持拍动作上传</h1>
+                    <img src="../static/picture/wopai/picture2.jpg" class="picture">
+                </a>
+            </div>
+            <div id="right" class="col-md-6" align="center">
+                <a target="_blank" href="/user/jiqiusc" class="btn btn-outline-white btn-lg">
+                    <h1>击球动作上传</h1>
+                    <img src="../static/picture/jiqiu/picture2.jpg" class="picture">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

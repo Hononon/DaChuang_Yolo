@@ -15,7 +15,6 @@ def myfunc(filename):
     from utils.plots import plot_one_box
     from utils.torch_utils import select_device, load_classifier, time_synchronized
 
-
     def detect(save_img=False):
         source, weights, view_img, save_txt, imgsz = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size
         save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
@@ -144,9 +143,13 @@ def myfunc(filename):
             s = f"\n{len(list(save_dir.glob('labels/*.txt')))} labels saved to {save_dir / 'labels'}" if save_txt else ''
             print(f"Results saved to {save_dir}{s}")
 
-        print(f'Done. ({time.time() - t0:.3f}s)')
-        print(names[int(cls)])
-        print(conf.tolist())
+        print(f'Done. ({time.time() - t0:.3f}s)') 
+        gesture=names[int(cls)]
+        accuracy=conf.tolist()
+
+        return gesture,accuracy
+
+
 
     if __name__ == 'detect_copy':
         print('ok')
@@ -175,7 +178,10 @@ def myfunc(filename):
         with torch.no_grad():
             if opt.update:  # update all models (to fix SourceChangeWarning)
                 for opt.weights in ['yolov5s.pt', 'yolov5m.pt', 'yolov5l.pt', 'yolov5x.pt']:
-                    detect()
+                    a,b=detect()
                     strip_optimizer(opt.weights)
             else:
-                detect()
+                a,b=detect()
+
+
+    return a,b

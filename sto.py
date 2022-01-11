@@ -1,2 +1,2 @@
 from detect_copy import myfunc
-myfunc('picture.jpg')
+print(myfunc('picture.jpg'))

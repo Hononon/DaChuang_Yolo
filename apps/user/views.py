@@ -7,11 +7,12 @@ from setting import Config
 from detect_copy import myfunc
 from detector import actions
 from detector import imgaction
+import tkinter
 
 user_bp = Blueprint('user', __name__, url_prefix='/user')
-required_login_list = ['/user/center', '/user/change', '/user/vupload', '/user/article', '/user/messages',
-                       '/user/wopaisc', '/user/jiqiusc','/user/wopaicl','/user/jiqiucl']
-
+required_login_list = ['/user/center', '/user/change', '/user/vupload', '/user/pupload', '/user/article',
+                       '/user/messages',
+                       '/user/wopaisc', '/user/jiqiusc', '/user/wopaicl']
 
 @user_bp.before_app_request
 def before_request():
@@ -135,30 +136,9 @@ def user_change():
             return redirect(url_for('user.user_center'))
     return render_template('user/user_center.html', user=g.user)
 
-
-@user_bp.route('/vupload', methods=['GET', 'POST'])
-def video_upload():
-    if request.method == 'POST':
-        video = request.files.get('video')
-        video_name = video.filename
-        suffix = video_name.rsplit('.')[-1]
-        if suffix in ALLOWED_EXTENSIONS_VIDEO:
-            video_name = secure_filename(video_name)
-            file_path = os.path.join(Config.UPLOAD_VIDEO_DIR, video_name)
-            video.save(file_path)
-            # action(file_path)
-
-        else:
-            return render_template('user/upvideo.html', user=g.user, msg='必须扩展名是mp4')
-
-        user = g.user
-        path = 'upload/video/'
-        user.video = os.path.join(path, video_name)
-        print('1=' + user.video)
-        db.session.commit()
-        return redirect(url_for('user.video_upload'))
-    return render_template('user/upvideo.html', user=g.user)
-
+@user_bp.route('/pupload', methods=['GET', 'POST'])
+def picture_upload():
+    return render_template('user/uppicture.html', user=g.user)
 
 @user_bp.route('/wopaisc', methods=['GET', 'POST'])
 def wopaisc():
@@ -194,6 +174,13 @@ def wopaicl():
         path = 'picture/new/'
         user.picture_wopai_new = os.path.join(path, 'wopaiing.jpg')
         db.session.commit()
+        #弹窗处理
+        window = tkinter.Tk()
+        window.title('意见')
+        window.geometry('300x200')
+        label = tkinter.Label(window, text="你的意见")
+        label.pack()
+        window.mainloop()
         return render_template('user/wopaisc.html', user=g.user)
     return render_template('user/wopaisc.html', user=g.user) 
 
@@ -232,5 +219,35 @@ def jiqiucl():
         path = 'picture/new/'
         user.picture_jiqiu_new = os.path.join(path, 'jiqiuing.jpg')
         db.session.commit()
+        #弹窗处理
+        window = tkinter.Tk()
+        window.title('意见')
+        window.geometry('300x200')
+        label = tkinter.Label(window, text="你的意见")
+        label.pack()
+        window.mainloop()
         return render_template('user/jiqiusc.html', user=g.user)
     return render_template('user/jiqiusc.html', user=g.user)  
+
+@user_bp.route('/vupload', methods=['GET', 'POST'])
+def video_upload():
+    if request.method == 'POST':
+        video = request.files.get('video')
+        video_name = video.filename
+        suffix = video_name.rsplit('.')[-1]
+        if suffix in ALLOWED_EXTENSIONS_VIDEO:
+            video_name = secure_filename(video_name)
+            file_path = os.path.join(Config.UPLOAD_VIDEO_DIR, video_name)
+            video.save(file_path)
+            # action(file_path)
+
+        else:
+            return render_template('user/upvideo.html', user=g.user, msg='必须扩展名是mp4')
+
+        user = g.user
+        path = 'upload/video/'
+        user.video = os.path.join(path, video_name)
+        print('1=' + user.video)
+        db.session.commit()
+        return redirect(url_for('user.video_upload'))
+    return render_template('user/upvideo.html', user=g.user)
