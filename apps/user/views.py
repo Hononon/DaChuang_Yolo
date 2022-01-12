@@ -12,7 +12,7 @@ import tkinter
 user_bp = Blueprint('user', __name__, url_prefix='/user')
 required_login_list = ['/user/center', '/user/change', '/user/vupload', '/user/pupload', '/user/article',
                        '/user/messages',
-                       '/user/wopaisc', '/user/jiqiusc', '/user/wopaicl']
+                       '/user/wopaisc', '/user/jiqiusc', '/user/wopaicl', '/user/jiqiucl']
 
 @user_bp.before_app_request
 def before_request():
@@ -170,10 +170,11 @@ def wopaicl():
         wopai_picture_name=wopai_picture_name.split('/')[-1]
 
         wopai_p_name = 'static/dealwith/wopaiing.jpg'
-        myfunc(wopai_p_name)
+        A,B=myfunc(wopai_p_name)
         path = 'picture/new/'
         user.picture_wopai_new = os.path.join(path, 'wopaiing.jpg')
         db.session.commit()
+        '''
         #弹窗处理
         window = tkinter.Tk()
         window.title('意见')
@@ -181,8 +182,16 @@ def wopaicl():
         label = tkinter.Label(window, text="你的意见")
         label.pack()
         window.mainloop()
-        return render_template('user/wopaisc.html', user=g.user)
-    return render_template('user/wopaisc.html', user=g.user) 
+        '''
+        msg='动作为握拍,'
+        if B > 0.8:
+            msg1='动作较为标准，请继续练习'
+        else:
+            msg1='动作不标准，请纠正'
+        msg1 = msg+msg1
+
+        return render_template('user/wopaisc.html', user=g.user, msg1=msg1)
+    return render_template('user/wopaisc.html', user=g.user, msg1=msg1) 
 
 
 @user_bp.route('/jiqiusc', methods=['GET', 'POST'])
@@ -215,10 +224,11 @@ def jiqiucl():
         jiqiu_picture_name=jiqiu_picture_name.split('/')[-1]
 
         jiqiu_p_name = 'static/dealwith/jiqiuing.jpg'
-        myfunc(jiqiu_p_name)
+        A,B=myfunc(jiqiu_p_name)
         path = 'picture/new/'
         user.picture_jiqiu_new = os.path.join(path, 'jiqiuing.jpg')
         db.session.commit()
+        '''
         #弹窗处理
         window = tkinter.Tk()
         window.title('意见')
@@ -226,8 +236,15 @@ def jiqiucl():
         label = tkinter.Label(window, text="你的意见")
         label.pack()
         window.mainloop()
-        return render_template('user/jiqiusc.html', user=g.user)
-    return render_template('user/jiqiusc.html', user=g.user)  
+        '''
+        msg='动作为击球,'
+        if B > 0.8:
+            msg1='动作较为标准，请继续练习'
+        else:
+            msg1='动作不标准，请纠正'
+        msg1 = msg+msg1
+        return render_template('user/jiqiusc.html', user=g.user, msg1=msg1)
+    return render_template('user/jiqiusc.html', user=g.user, msg1=msg1)  
 
 @user_bp.route('/vupload', methods=['GET', 'POST'])
 def video_upload():

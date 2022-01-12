@@ -101,6 +101,7 @@ def myfunc(filename):
                         s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                     # Write results
+                    global cls,conf
                     for *xyxy, conf, cls in reversed(det):
                         if save_txt:  # Write to file
                             xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
@@ -149,6 +150,7 @@ def myfunc(filename):
 
         return gesture,accuracy
 
+    global a,b
 
 
     if __name__ == 'detect_copy':

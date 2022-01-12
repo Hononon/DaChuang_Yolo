@@ -19,7 +19,7 @@
         .picture {
             width: 100%;
             float: center;
-            height: 1000px;
+            height: 550px;
         }
         .picture1 {
             width: 100%;
@@ -67,6 +67,11 @@
         <p>
             <img src="{% if user.picture_wopai_new%}{{ url_for('static',filename=user.picture_wopai_new)}} {% else %}{{ url_for('static',filename='picture/wopai/picture1.jpg')}} {% endif%}"
                  class="picture"></p>
+    </div>
+    <div>
+        <P>
+            <font size="7">{{msg1}}</font>
+        </P>
     </div>
 </div>
 {% endblock %}
